@@ -59,6 +59,7 @@ func NewClient(c Conn, chans <-chan NewChannel, reqs <-chan *Request) *Client {
 		conn.forwards.closeAll()
 	}()
 	go conn.forwards.handleChannels(conn.HandleChannelOpen("forwarded-tcpip"))
+	go conn.forwards.handleChannels(conn.HandleChannelOpen("forwarded-streamlocal@openssh.com"))
 	return conn
 }
 
